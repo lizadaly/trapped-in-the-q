@@ -1,0 +1,3 @@
+git+https://github.com/aparrish/pytracery.git#egg=tracery
+future
+requests
