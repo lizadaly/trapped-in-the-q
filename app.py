@@ -16,7 +16,7 @@ print("""
 ### By Liza Daly for NaNoGenMo 2016
 
 James B. was making one of his usual visits to see the master weaponsmaker at headquarters.
-These tours were important, but sometimes they could be a bit tedious!
+He knew this was an important part of his mission, but sometimes Q could be so tedious!
 
 """)
 
@@ -53,10 +53,13 @@ def generate_object(from_objects, relationship_type="rhyme", part_of_speech="nou
             continue
         for words in r.json():
             clean_words = [w.strip() for w in words['words'] if not w[0].istitle()]
+            random.shuffle(clean_words)
             for word in clean_words:
                 r2 = requests.get(WORDNIK_API + '/word.json/' + word + '/definitions',
                                   params={'partOfSpeech': part_of_speech}, headers=headers)
                 if len(r2.content) > 0:
+                    if word.endswith('ed'):
+                        word = 'be ' + word
                     puns.append(word)
 
     return obj, puns
@@ -71,9 +74,7 @@ start_rules = {
 
 #james reacts#
 
-#demo continues#
-
-#demo close#
+#demo continues# #demo close#
 
 #james final#
 
@@ -145,12 +146,14 @@ it's #actually# a #weapon type#. Pure #metal# #shielding#, developed during proj
     'precisely targets': ['precisely targets', 'is programmed to aim at', 'aims at', 'targets', 'seeks out'],
 
     # James final reaction
-    'james final': '"#that certainly will2.capitalize# #pun phrase2#."',
+    'james final': '"#that certainly will2.capitalize# #pun phrase2#," James #quipped#, #quiply#.',
     'that certainly will2': ['Well, I dare say that #body_part# will', 'Surely the #body_part# will', "That #body_part# surely will",
                             "That #body_part# certainly will "],
     'body_part': None,
     'pun phrase2': None,
-    'body fluids': body_fluids
+    'body fluids': body_fluids,
+    'quipped': ['quipped', 'punned', 'said', 'joked'],
+    'quiply': ['using one of his signature puns', 'in his inimical way', 'as he is wont to do', 'in his trademark fashion'],
 }
 
 tired = {
@@ -182,15 +185,10 @@ not_first = {
 
 
 
-iterations = 6 # 350
+iterations = 420
 tired_message = False
 dead_message = False
 skip_puns = False
-
-
-def demo():
-    print(start_grammar.flatten('#origin#'))
-
 
 for i in range(0, iterations):
     if i == 1:
@@ -213,4 +211,4 @@ for i in range(0, iterations):
 
     start_grammar = tracery.Grammar(start_rules)
     start_grammar.add_modifiers(base_english)
-    demo()
+    print(start_grammar.flatten('#origin#'))
