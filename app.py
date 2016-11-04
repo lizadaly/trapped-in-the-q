@@ -29,7 +29,6 @@ codenames = json.load(open("nsa_projects.json"))['codenames']
 body_parts = json.load(open("bodyParts.json"))['bodyParts']
 body_fluids = json.load(open("abridged-body-fluids.json"))['abridged body fluids']
 interjections = json.load(open("interjections.json"))['interjections']
-colors = [c['color'].lower() for c in json.load(open("crayola.json"))['colors']]
 
 WORDNIK_API = 'http://api.wordnik.com:80/v4'
 headers = {'content-type': 'application/json',
@@ -84,7 +83,7 @@ start_rules = {
     'showyou': ['show you', 'demonstrate', 'show off', 'present to you', 'let you see'],
     'our': ['our', 'my', "the department's", "Her Majesty's", "the team's"],
     'next': ['next', 'newest', 'latest', 'finest', 'proudest'],
-    'toy': ['toy', 'contraption', 'device', 'little trick', 'weapon', 'latest', 'technical wonder'],
+    'toy': ['toy', 'contraption', 'device', 'little trick', 'weapon', 'technical wonder'],
 
     # James responds
     'james response': '"#hello2.capitalize#, Q," James #said#, #interested#. "What #manner# of #device# do you have for me #now#?"',
@@ -96,10 +95,9 @@ start_rules = {
     'now': ['now', 'today', 'again', 'once again', 'this morning'],
 
     # Q does his demo
-    'demo rules': """[device:#object#]Q #held up# #color.a# #device#. "I #know# it looks like #ordinary.a# #device#, but if you #look carefully#, #it turns out that# \
+    'demo rules': """[device:#object#]Q #held up# #device.a#. "I #know# it looks like #ordinary.a# #device#, but if you #look carefully#, #it turns out that# \
 it's #actually# a #weapon type#. Pure #metal# #shielding#, developed during project #codenames#." """,
     'held up': ['held up', 'walked over to', 'waved his arm towards', 'gestured at', 'nodded towards', 'lifted', 'picked up'],
-    'color': colors,
     'know': ['know', 'realize', 'understand'],
     'ordinary': ['ordinary', 'simple', 'everyday', 'innocent', 'boring'],
     'object': None,
@@ -130,20 +128,21 @@ it's #actually# a #weapon type#. Pure #metal# #shielding#, developed during proj
     'pun phrase': None,
 
     # Demo continues
-    'demo continues': '"#chides#, James. #chides again.capitalize#.',
+    'demo continues': '"#chides#, James," Q #complained#. "#chides again.capitalize#.',
+    'complained': ['complained', 'said', 'sighed', 'said with exasperation', 'said, rolling his eyes'],
     'chides': ['Do pay attention', 'This is dangerous stuff you know', "I won't be responsible if you hurt yourself",
         "Please give me your attention", "Do listen to me"],
     'chides again': ['please take this seriously', 'do act your age', 'at least pretend to be interested'],
 
     # Demo close
-    'demo close': """"#finally.capitalize#," Q #said#, "There is #one more thing#: if you #do this#, it #precisely targets#
+    'demo close': """#finally.capitalize#," Q #said#, "If you #do this#, it #precisely targets#
     your enemy's #body_part#, #spraying# #body fluids# everywhere." """,
     'finally': ['Finally', 'Also', 'Anyway'],
     'spraying': ['spraying', 'shooting', 'leaking', 'atomizing'],
     'one more thing': ['one more thing', 'one last thing', 'one final feature', 'an additional note'],
     'do this': ['wave it counterclockwise', 'point it at the sun', 'point it at yourself', 'point it at the floor', 'put it down your pants',
                 'wear it like a brooch', 'put it behind your ear'],
-    'precisely targets': ['precisely targets', 'is programmed to aim at', 'aims at', 'targets', 'seeks out'],
+    'precisely targets': ['precisely targets', 'is programmed to fire at', 'targets', 'seeks out', 'fires at', 'shoots at'],
 
     # James final reaction
     'james final': '"#that certainly will2.capitalize# #pun phrase2#," James #quipped#, #quiply#.',
