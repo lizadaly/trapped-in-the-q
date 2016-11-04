@@ -184,7 +184,7 @@ not_first = {
 
 
 
-iterations = 420
+iterations = 6 # 420
 tired_message = False
 dead_message = False
 skip_puns = False
