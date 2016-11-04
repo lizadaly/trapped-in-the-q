@@ -15,7 +15,7 @@ Makes use of:
 * Various data sources from [corpora](https://github.com/dariusk/corpora)
 * The [Wordnik API](https://www.wordnik.com/) to generate James' signature puns and wordplay (except more terrible)
 
-Full NaNoGenMo entry (50,468 words): 
+[Full NaNoGenMo entry (50,468 words)](https://github.com/lizadaly/trapped-in-the-q/blob/master/out.pdf)
 
 ## Sample (6 iterations):
 
