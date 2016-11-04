@@ -180,11 +180,7 @@ not_first = {
     'next': ['next', 'yet another', 'one more', 'even finer', 'even more exciting'],
 }
 
-
-
-
-
-iterations = 6 # 420
+iterations = 420
 tired_message = False
 dead_message = False
 skip_puns = False
